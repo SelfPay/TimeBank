@@ -1,6 +1,9 @@
 {
   "name": "boiler",
   "version": "1.0.0",
+  "engines": {
+    "node": "7.8.0"
+  },
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
