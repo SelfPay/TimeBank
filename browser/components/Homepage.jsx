@@ -50,7 +50,7 @@ export default class HomeContainer extends Component{
         <Navbar version={this.state.version}/>
         <div id="belowNav">
           <Qualify id="qualify" choose={this.revealChoice} />
-          <Menu id='menu' choice={this.state.option} version={this.state.version}/>
+          <Menu id='menu' choice={this.state.option} />
 
         </div>
       </div>

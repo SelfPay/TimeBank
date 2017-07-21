@@ -22,16 +22,13 @@ const Dropdown = (props) => (
 
 export default (props) => {
 
-  let obj = {}
+  let version = ''
+  if (props.version === '1') version = 'Mainnet'
 
-  if (props.version === '3') obj.version =  'Ropsten'
-  else if (props.version === '1') obj.version = 'Mainnet'
-
-  const frozenNetwork = Object.freeze(obj)
 
 return (<AppBar
   title="TimeBank"
   iconElementLeft={<Dropdown/>}
-  iconElementRight={<div ><h1 style={{margin: 0, marginTop: 5, fontWeight: 400}}>{frozenNetwork.version || 'No Network Detected'}</h1></div>}
+  iconElementRight={<div ><h1 style={{margin: 0, marginTop: 5, fontWeight: 400}}>{version || 'Not Connected to Mainnet'}</h1></div>}
 />)
 }

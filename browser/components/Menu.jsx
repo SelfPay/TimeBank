@@ -17,29 +17,6 @@ class Menu extends Component {
       time: null,
       text: 'Use this input or slider',
       snackOpen: false,
-      ropstenABI: [{
-        "constant": false,
-        "inputs": [],
-        "name": "withdrawFunds",
-        "outputs": [],
-        "payable": false,
-        "type": "function"
-      }, {
-        "constant": false,
-        "inputs": [{"name": "_withdrawTime", "type": "uint256"}],
-        "name": "depositFunds",
-        "outputs": [{"name": "_fundsDeposited", "type": "uint256"}],
-        "payable": true,
-        "type": "function"
-      }, {
-        "constant": true,
-        "inputs": [],
-        "name": "getInfo",
-        "outputs": [{"name": "", "type": "uint256"}, {"name": "", "type": "uint256"}, {"name": "", "type": "uint256"}],
-        "payable": false,
-        "type": "function"
-      }],
-      ropstenContractAddress: '0xCf9F3f8F8B5bf5Ed72bD3Fdb66c29E36675c9D2b',
       liveABI: [{"constant":false,"inputs":[],"name":"withdrawFunds","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_withdrawTime","type":"uint256"}],"name":"depositFunds","outputs":[{"name":"_fundsDeposited","type":"uint256"}],"payable":true,"type":"function"},{"constant":true,"inputs":[],"name":"getInfo","outputs":[{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"uint256"}],"payable":false,"type":"function"}],
       liveContractAddress: '0x459F90b6e8dc23bBF1fF4c2F22aa2149b4bd4CFf',
       fundsToDeposit: 0,
@@ -87,18 +64,8 @@ class Menu extends Component {
 
 
   getInfoClick() {
-    let abi
-    let contractAddress
 
-    if (this.props.version === '3') {
-      abi = this.state.ropstenABI
-      contractAddress = this.state.ropstenContractAddress
-    }
-    else if (this.props.version === '1') {
-      abi = this.state.liveABI
-      contractAddress = this.state.liveContractAddress
-    }
-    window.web3.eth.contract(abi).at(contractAddress).getInfo({from: window.web3.eth.accounts[0]}, (err, result) => {
+    window.web3.eth.contract(this.state.liveABI).at(this.state.liveContractAddress).getInfo({from: window.web3.eth.accounts[0]}, (err, result) => {
       var result = result.toString().split(',')
       var futureDays
       if (!Number(result[1])) futureDays = 0
@@ -109,21 +76,11 @@ class Menu extends Component {
   }
 
   depositFundsClick() {
-    let abi
-    let contractAddress
 
     console.log('Time', Math.ceil(Date.now() / 1000) + this.state.time)
     console.log('Wei', this.state.fundsToDeposit)
 
-    if (this.props.version === '3') {
-      abi = this.state.ropstenABI
-      contractAddress = this.state.ropstenContractAddress
-    }
-    else if (this.props.version === '1') {
-      abi = this.state.liveABI
-      contractAddress = this.state.liveContractAddress
-    }
-    window.web3.eth.contract(abi).at(contractAddress).depositFunds(Date.now()/1000 + this.state.time,{from:window.web3.eth.accounts[0],value:this.state.fundsToDeposit},
+    window.web3.eth.contract(this.state.liveABI).at(this.state.liveContractAddress).depositFunds(Date.now()/1000 + this.state.time,{from:window.web3.eth.accounts[0],value:this.state.fundsToDeposit},
       (err,result)=>{
         if (result) this.setState({depositTransaction:result, snackOpen:true})
         else console.log('Error Message:', err)
@@ -132,24 +89,12 @@ class Menu extends Component {
   }
 
   withdrawFundsClick() {
-    let abi
-    let contractAddress
 
-
-    if (this.props.version === '3') {
-      abi = this.state.ropstenABI
-      contractAddress = this.state.ropstenContractAddress
-    }
-    else if (this.props.version === '1') {
-      abi = this.state.liveABI
-      contractAddress = this.state.liveContractAddress
-    }
-    window.web3.eth.contract(abi).at(contractAddress).withdrawFunds({from:window.web3.eth.accounts[0]},
+    window.web3.eth.contract(this.state.liveABI).at(this.state.liveContractAddress).withdrawFunds({from:window.web3.eth.accounts[0]},
       (err,result)=>{
         if (result) this.setState({withdrawTransaction:result,snackOpen:true})
         else console.log('Error Message:', err)
       })
-
   }
 
   getInfo() {
@@ -185,9 +130,7 @@ class Menu extends Component {
         style={{marginLeft: 5}}
         onChange={this.handleETH}
       />
-      {this.state.depositTransaction && this.props.version === '3'? <a href={'https://ropsten.etherscan.io/tx/' + this.state.depositTransaction } target="_blank"><PublicIcon
-          style={{verticalAlign: 'middle', marginLeft: 5}}/></a> : <div></div>}
-      {this.state.depositTransaction && this.props.version === '1' ?
+      {this.state.depositTransaction ?
         <a href={'https://etherscan.io/tx/' + this.state.depositTransaction} target="_blank"><PublicIcon
           style={{verticalAlign: 'middle', marginLeft: 5}}/></a> : <div></div>}
 
@@ -202,14 +145,9 @@ class Menu extends Component {
       <br/>
       <RaisedButton label="Withdraw Funds" primary={true} onClick={this.withdrawFundsClick}/>
 
-      {this.state.withdrawTransaction && this.props.version === '3' ?
-        <a href={'https://ropsten.etherscan.io/tx/' + this.state.withdrawTransaction} target="_blank"><PublicIcon
-          style={{verticalAlign: 'middle', marginLeft: 5}}/></a> : <div style={{position:'absolute'}}></div>}
-
-      {this.state.withdrawTransaction && this.props.version === '1' ?
+      {this.state.withdrawTransaction ?
         <a href={'https://etherscan.io/tx/' + this.state.withdrawTransaction} target="_blank"><PublicIcon
           style={{verticalAlign: 'middle', marginLeft: 5}}/></a> : <div style={{position:'absolute'}}></div>}
-
     </div>
   }
 
