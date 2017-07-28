@@ -12,7 +12,6 @@ export default class HomeContainer extends Component{
     this.state = {
       option : '',
       version: ''
-
     }
 
     this.revealChoice = this.revealChoice.bind(this)
@@ -31,8 +30,12 @@ export default class HomeContainer extends Component{
         // Use Mist/MetaMask's provider
         window.web3 = new Web3(web3.currentProvider);
         console.log('Using injected web3')
-        console.log(window.web3.eth.getBlockNumber((err,result) =>{console.log('Latest Block Number:',result,'Error or null:',err)}))
-        this.setState({version:window.web3.version.network})
+        window.web3.eth.getBlockNumber((err,result) =>{
+          if(result) {
+            console.log('Latest Block Number:',result)
+            this.setState({version:window.web3.version.network})
+          }
+          else console.log('Error: ', err)})
 
       } else {
         console.log('No injected web3, attempting to connect to local host')

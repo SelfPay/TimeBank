@@ -16,10 +16,13 @@ const FAQ = (props) => {
 
     <p>And of course this website component is only providing a friendly UI for interacting with the smart contract, you can always transact with the smart contract directly.</p>
 
-    <h4 className="FAQ">Where is the contract?</h4>
-      <p>Here verified on <a href="https://etherscan.io/address/0x459f90b6e8dc23bbf1ff4c2f22aa2149b4bd4cff">Etherscan</a>.</p>
+    <h4 className="FAQ">Where are the contracts?</h4>
+      <p>Here verified on Etherscan: <a href="https://etherscan.io/address/0x459f90b6e8dc23bbf1ff4c2f22aa2149b4bd4cff">ETH Contract</a>,
+        and <a href="https://etherscan.io/address/0x18ce0b9fedceb66e9fb7783bbddb4565232a9c22">Token Contract</a>.
+      </p>
 
     <h4 className="FAQ">Anything else I should know?</h4>
+      <p>Make sure you always have enough ETH in your account to pay for gas for each transaction, and of course use the same address to withdraw as you did to deposit.</p>
     <p>Not a need to know, but you can deposit multiple times to the smart contract and it will update the stored balance but
       still keep the original withdrawal date.</p>
     <p>And also as a safety check for bad user inputs (like someone putting an extra digit), the smart contract will not accept
@@ -31,7 +34,7 @@ const FAQ = (props) => {
 
 
     <p>I'm a Fullstack Developer with a passion for decentralized applications and it's power to change the world.</p>
-    <p>Want to work together on a project? Reach me at isaac@eyezick.com</p>
+    <p>Reach me at isaac@eyezick.com</p>
     </div>
   </div>
 };
