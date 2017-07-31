@@ -322,7 +322,7 @@ class Menu extends Component {
         BAT: '0x0d8775f648430679a709e98d2b0cb6250d2887ef',
         BNT: '0x1f573d6fb3f13d689ff844b4ce37794d79a7ff1c',
         ICN: '0x888666CA69E0f178DED6D75b5726Cee99A87D698',
-        REP: '0x48c80F1f4D53D5951e5D5438B54Cba84f29F32a5',
+        REP: '0xE94327D07Fc17907b4DB788E5aDf2ed424adDff6',
         SNT: '0x744d70fdbe2ba4cf95131626614a1763df805b9e'
       },
       allowance: 'Allowance Of',
