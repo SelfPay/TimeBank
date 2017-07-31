@@ -21,6 +21,8 @@ body {
 button {
   span {
     text-transform: none !important;
+    padding: 5px !important;
+
   }
 }
 
@@ -41,4 +43,24 @@ div[role="menu"]{
 
  .qualifyButton {
    width:75%;
+ }
+
+ .withdrawButton {
+   width: 15%;
+ }
+
+ .depositToken {
+   color: #FFFFFF;
+   font-family: 'Roboto', sans-serif;
+   margin-bottom: 0;
+ }
+
+ h4 {
+   color: #FFFFFF;
+ }
+
+ #dropdownTokenInfo {
+   div {
+     overflow: visible !important;
+   }
  }

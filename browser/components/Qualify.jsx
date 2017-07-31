@@ -18,9 +18,13 @@ class Qualify extends Component {
         <RaisedButton label="Get info on current deposit" className='qualifyButton' primary={true} onClick={() =>this.props.choose('getInfo')}/>
         <br/>
         <br/>
-        <RaisedButton label="Deposit ETH for a fixed time" className='qualifyButton' primary={true} onClick={() =>this.props.choose('depositFunds')}/><br/>
+        <RaisedButton label="Deposit ETH for a fixed time" className='qualifyButton' primary={true} onClick={() =>this.props.choose('depositFunds')}/>
         <br/>
-        <RaisedButton label="Withdraw ETH" className='qualifyButton' primary={true} onClick={() =>this.props.choose('withdrawFunds')}/>
+        <br/>
+        <RaisedButton label="Deposit Tokens for a fixed time" className='qualifyButton' primary={true} onClick={() =>this.props.choose('depositTokens')}/>
+        <br/>
+        <br/>
+        <RaisedButton label="Withdraw Assets" className='qualifyButton' primary={true} onClick={() =>this.props.choose('withdrawFunds')}/>
       </div>
     )
   }
